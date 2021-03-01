@@ -10,6 +10,10 @@
       <img :src="user.avatar" alt="" class="avatar" />
     </div>
 
+    <div v-if="user.repos">
+      {{ user.name }} possède {{ user.repos.length }} repos.
+    </div>
+
     <div class="how-old">
       <div v-if="user.age >= 20">
         <p>Âge : {{ user.age }} (Extrêmement vieux)</p>
@@ -74,6 +78,7 @@ export default defineComponent({
         name: "Alexis",
         avatar: null,
         age: 21,
+        repos: [],
         friends: [
           {
             uuid: "91261477-04fb-4052-8ef9-6041ad7afb7e",
@@ -118,6 +123,14 @@ export default defineComponent({
       .get("https://api.github.com/users/alexisnp")
       .then(res => {
         this.user.avatar = res.data.avatar_url;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    axios
+      .get("https://api.github.com/users/alexisnp/repos")
+      .then(res => {
+        this.user.repos = res.data;
       })
       .catch(err => {
         console.log(err);
