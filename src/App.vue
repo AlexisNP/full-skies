@@ -20,12 +20,11 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .fs-wrapper {
-  min-height: 100vh;
-  display: flex;
-  flex-flow: column;
+  position: relative;
   .fs-content {
-    padding: 70px 20px 20px;
-    flex-grow: 1;
+    margin-top: 70px;
+    padding-top: 20px;
+    min-height: calc(100vh - 90px);
   }
 }
 </style>

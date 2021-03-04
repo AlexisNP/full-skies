@@ -44,8 +44,8 @@ export default defineComponent({
   right: 0;
   height: 70px;
   padding: 0 20px;
-  background: $black;
-  box-shadow: 0 5px 5px rgba($white, 0.1);
+  background: $fs-black;
+  box-shadow: 0 5px 5px rgba($black, 0.3);
 
   &:after {
     position: absolute;
@@ -58,6 +58,7 @@ export default defineComponent({
     background-image: url("/nav-bg.png");
     background-size: cover;
     background-position: center right;
+    opacity: 0.75;
   }
 
   .navbar-menu {
