@@ -1,13 +1,16 @@
 <template>
-  <section class="about">
-    <h2>About</h2>
-  </section>
+  <div class="celestial-card">
+    {{ celestial.name }}
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "Home"
+  name: "celestial-card",
+  props: {
+    celestial: Object
+  }
 });
 </script>

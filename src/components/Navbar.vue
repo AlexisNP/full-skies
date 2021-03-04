@@ -23,12 +23,16 @@ export default defineComponent({
           link: "/"
         },
         {
-          text: "About",
-          link: "/about"
+          text: "Célestes",
+          link: "/celestes"
         },
         {
-          text: "Profile",
-          link: "/profile"
+          text: "À propos",
+          link: "/a-propos"
+        },
+        {
+          text: "Profil",
+          link: "/profil"
         }
       ]
     };

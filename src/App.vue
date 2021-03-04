@@ -23,8 +23,7 @@ export default defineComponent({
   position: relative;
   .fs-content {
     margin-top: 70px;
-    padding-top: 20px;
-    min-height: calc(100vh - 90px);
+    min-height: calc(100vh - 70px);
   }
 }
 </style>

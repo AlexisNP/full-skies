@@ -4,6 +4,9 @@ import Home from "../views/Home.vue";
 import About from "../views/About.vue";
 import Profile from "../views/Profile.vue";
 
+import Celestials from "../views/celestials/Celestials.vue";
+import Celestial from "../views/celestials/Celestial.vue";
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
@@ -11,12 +14,23 @@ const routes: Array<RouteRecordRaw> = [
     component: Home
   },
   {
-    path: "/about",
+    path: "/a-propos",
     name: "About",
     component: About
   },
   {
-    path: "/profile",
+    path: "/celestes",
+    name: "Célestes",
+    component: Celestials
+  },
+  {
+    path: "/celestes/:slug",
+    name: "Céleste",
+    component: Celestial,
+    props: true
+  },
+  {
+    path: "/profil",
     name: "Profile",
     component: Profile
   }

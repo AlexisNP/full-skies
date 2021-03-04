@@ -1,0 +1,20 @@
+@keyframes fadeInBg {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 33%;
+  }
+}
+
+@keyframes paneBgAround {
+  0% {
+    background-position: -10vw 0%;
+  }
+  50% {
+    background-position: -20vw 0%;
+  }
+  100% {
+    background-position: -10vw 0%;
+  }
+}

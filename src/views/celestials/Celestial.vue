@@ -1,6 +1,6 @@
 <template>
-  <section class="about">
-    <h2>About</h2>
+  <section class="celestial">
+    <h2>Single Celestial</h2>
   </section>
 </template>
 
@@ -8,6 +8,6 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "Home"
+  name: "Celestial"
 });
 </script>
