@@ -34,6 +34,20 @@
       </div>
 
       <div class="card-content">
+        <div v-if="celestial.aroundPlanet">
+          <p>
+            Orbite autour de
+            <router-link
+              :to="{
+                name: 'CelesteSingle',
+                params: { slug: celestial.aroundPlanet.planet }
+              }"
+              class="txt-capitalize"
+            >
+              {{ celestial.aroundPlanet.planet }}
+            </router-link>
+          </p>
+        </div>
         <div v-if="celestial.gravity">
           <p>Facteur Gravité : {{ celestial.gravity }}</p>
         </div>
@@ -52,7 +66,12 @@
       </div>
 
       <div class="card-actions">
-        <a href="#" class="btn btn-primary">Détails</a>
+        <router-link
+          :to="{ name: 'CelesteSingle', params: { slug: celestial.id } }"
+          class="btn btn-primary"
+        >
+          Détails
+        </router-link>
       </div>
     </div>
   </div>

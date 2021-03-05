@@ -15,7 +15,6 @@ import CelestialsList from "@/components/celestials/CelestialsList.vue";
 
 // API
 import axios from "axios";
-
 // Global methods
 import { addCelestialType } from "@/plugins/methods";
 
@@ -32,20 +31,19 @@ export default defineComponent({
     };
   },
 
-  async mounted() {
+  mounted() {
     // Fetches from API...
-    this.fetchBodies().then(res => {
+    this.fetchCelestials().then(res => {
       // ...and add type
       this.celestials = this.addType(res);
     });
-    console.log(this.$options);
   },
 
   methods: {
     /**
      * Fetches celestial bodies from API
      */
-    fetchBodies(): Promise<any> {
+    fetchCelestials(): Promise<any> {
       return axios
         .get("https://api.le-systeme-solaire.net/rest/bodies/")
         .then(res => {
