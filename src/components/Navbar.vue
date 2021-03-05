@@ -45,11 +45,12 @@ export default defineComponent({
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
+  width: 100%;
   height: 70px;
   padding: 0 20px;
   background: $fs-black;
   box-shadow: 0 5px 5px rgba($black, 0.3);
+  z-index: 9999;
 
   &:after {
     position: absolute;

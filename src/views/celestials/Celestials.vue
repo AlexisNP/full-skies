@@ -1,6 +1,8 @@
 <template>
   <section class="celestials">
-    <h2>Le système solaire</h2>
+    <header>
+      <h1 class="heading-1">Le système solaire</h1>
+    </header>
     <div class="section-content">
       <celestials-list :celestials="celestials" />
     </div>
@@ -41,3 +43,27 @@ export default defineComponent({
   }
 });
 </script>
+
+<style lang="scss" scoped>
+.celestials {
+  position: relative;
+  min-height: inherit;
+  padding: 25px 10%;
+
+  &:after {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-image: url("/celestials_bg-min.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    z-index: -1;
+    opacity: 33%;
+    pointer-events: none;
+  }
+}
+</style>

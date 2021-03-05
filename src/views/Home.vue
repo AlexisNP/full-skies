@@ -1,6 +1,6 @@
 <template>
   <section class="home">
-    <div class="splash">
+    <div class="splash fade-in-children">
       <h2 class="heading-1">Full Skies</h2>
       <p class="heading-2">
         L'application Full Skies explore les cieux à votre place !
@@ -43,14 +43,8 @@ export default defineComponent({
     z-index: -1;
     opacity: 0;
     pointer-events: none;
-    animation: fadeInBg 5s ease-out 1s 1 forwards,
-      paneBgAround 35s ease-in-out 1s infinite forwards;
-  }
-
-  .splash {
-    .heading-1 {
-      font-size: 50px;
-    }
+    animation: fadeInBg 2s ease-out 0s 1 forwards,
+      paneBgAround 35s ease-in-out 0s infinite forwards;
   }
 }
 </style>
