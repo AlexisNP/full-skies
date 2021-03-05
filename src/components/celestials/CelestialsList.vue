@@ -29,3 +29,16 @@ export default defineComponent({
   }
 });
 </script>
+
+<style lang="scss" scoped>
+.celestial-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-flow: row wrap;
+  .celestial-item {
+    width: calc(33% - 15px);
+    margin-bottom: 20px;
+  }
+}
+</style>
