@@ -4,7 +4,12 @@
 @import 'variables';
 @import 'animations';
 
+* {
+  box-sizing: border-box;
+}
+
 body {
+  height: 100%;
   font-family: $body-font-family;
   font-size: $font-size-base;
   line-height: 1.2;
@@ -31,6 +36,18 @@ h4 { font-size: 18px; }
   &-2 {
     margin-bottom: 20px;
     font-size: 25px;
+    font-weight: $fw-semibold;
+  }
+  &-3 {
+    margin-bottom: 0;
+    font-size: 20px;
+    font-weight: $fw-semibold;
+  }
+}
+
+.txt {
+  &-capitalize {
+    text-transform: capitalize;
   }
 }
 
@@ -51,4 +68,22 @@ a {
 
 hr {
   border-color: rgba($white, .2);
+}
+
+.btn {
+  display: inline-block;
+  padding: 13px 33px;
+  vertical-align: middle;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  border-radius: 30px;
+
+  &-primary {
+    color: $white;
+    background: $primary;
+    &:hover {
+      
+    }
+  }
 }

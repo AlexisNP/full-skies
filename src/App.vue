@@ -24,6 +24,11 @@ export default defineComponent({
   .fs-content {
     margin-top: 70px;
     min-height: calc(100vh - 70px);
+    display: flex;
+    align-items: stretch;
+    > * {
+      width: 100%;
+    }
   }
 }
 </style>
