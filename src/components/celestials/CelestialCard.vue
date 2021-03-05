@@ -70,9 +70,6 @@ export default defineComponent({
   },
   props: {
     celestial: Object
-  },
-  mounted() {
-    console.log(this.celestial);
   }
 });
 </script>

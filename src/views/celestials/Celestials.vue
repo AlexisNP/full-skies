@@ -11,9 +11,13 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import CelestialsList from "@/components/celestials/CelestialsList.vue";
+
+// API
 import axios from "axios";
 
-import CelestialsList from "@/components/celestials/CelestialsList.vue";
+// Global methods
+import { addCelestialType } from "@/plugins/methods";
 
 export default defineComponent({
   name: "Celestials",
@@ -24,7 +28,7 @@ export default defineComponent({
   // Initial state
   data() {
     return {
-      celestials: []
+      celestials: Array<any>()
     };
   },
 
@@ -34,13 +38,14 @@ export default defineComponent({
       // ...and add type
       this.celestials = this.addType(res);
     });
+    console.log(this.$options);
   },
 
   methods: {
     /**
      * Fetches celestial bodies from API
      */
-    fetchBodies() {
+    fetchBodies(): Promise<any> {
       return axios
         .get("https://api.le-systeme-solaire.net/rest/bodies/")
         .then(res => {
@@ -55,30 +60,8 @@ export default defineComponent({
     /**
      * Assign a type from the celestial object provided
      */
-    addType(bodies: []) {
-      return bodies.filter((e: any) => {
-        // Check if element is planet
-        if (e.isPlanet) {
-          if (e.moons) {
-            e.type = "planète à lunes";
-          } else {
-            e.type = "planète";
-          }
-
-          // Check if element is moon
-        } else if (e.aroundPlanet != null) {
-          e.type = "lune";
-
-          // Check if element is star
-        } else if (e.id === "soleil") {
-          e.type = "étoile";
-
-          // ...else, body is "other"
-        } else {
-          e.type = "autre";
-        }
-        return e;
-      });
+    addType(bodies: Array<any>): Array<any> {
+      return bodies.map((e: any) => addCelestialType(e));
     }
   }
 });
