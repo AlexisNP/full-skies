@@ -1,0 +1,48 @@
+@keyframes fadeInBg {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 33%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+
+@keyframes fromBottom {
+  from {
+    transform: translateY(20px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes paneBgAround {
+  0% {
+    background-position: -10vw 0%;
+  }
+  50% {
+    background-position: -20vw 0%;
+  }
+  100% {
+    background-position: -10vw 0%;
+  }
+}
+
+.fade-in-children {
+  @for $i from 1 through 10 {
+    :nth-child(#{$i}) {
+      opacity: 0;
+      animation: fadeIn 1.5s ease-in-out 1s 1 forwards, fromBottom 1.5s ease-in-out 1s 1 forwards;
+      animation-delay: 0.25s + $i * 0.25s;
+    }
+  }
+}

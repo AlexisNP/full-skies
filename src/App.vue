@@ -1,8 +1,34 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-    <router-link to="/profile">Profile</router-link>
+  <div class="fs-wrapper">
+    <navbar />
+    <div class="fs-content">
+      <router-view />
+    </div>
   </div>
-  <router-view />
 </template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+import Navbar from "@/components/Navbar.vue";
+
+export default defineComponent({
+  components: {
+    Navbar
+  }
+});
+</script>
+
+<style lang="scss" scoped>
+.fs-wrapper {
+  position: relative;
+  .fs-content {
+    margin-top: 70px;
+    min-height: calc(100vh - 70px);
+    display: flex;
+    align-items: stretch;
+    > * {
+      width: 100%;
+    }
+  }
+}
+</style>

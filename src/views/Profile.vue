@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <header class="profile-header">
-      <h1>My Profile</h1>
+      <h2>My Profile</h2>
       <hr />
       <h2>Profile for {{ user.name }}</h2>
     </header>
