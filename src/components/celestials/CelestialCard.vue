@@ -5,24 +5,33 @@
         <img
           v-if="celestial.type === 'planète à lunes'"
           src="/icons/saturn-and-other-planets.svg"
+          class="fs-icon"
           alt="planet icon"
         />
         <img
           v-else-if="celestial.type === 'planète'"
           src="/icons/saturn-planet-shape.svg"
+          class="fs-icon"
           alt="planet icon"
         />
         <img
           v-else-if="celestial.type === 'lune'"
           src="icons/moon-and-stars-in-a-cloud.svg"
+          class="fs-icon"
           alt="moon icon"
         />
         <img
           v-else-if="celestial.type === 'étoile'"
           src="icons/sun-shape.svg"
+          class="fs-icon"
           alt="moon icon"
         />
-        <img v-else src="icons/stars-group.svg" alt="moon icon" />
+        <img
+          v-else
+          src="icons/stars-group.svg"
+          alt="moon icon"
+          class="fs-icon"
+        />
       </div>
 
       <div class="card-header">
@@ -114,14 +123,13 @@ export default defineComponent({
       position: absolute;
       top: 0;
       right: 0;
-      img {
-        max-width: 50px;
-        max-height: 50px;
-      }
     }
 
     > * {
       flex: 0 1 auto;
+    }
+    .card-header {
+      padding-right: 60px;
     }
     .card-content {
       flex: 1 1 auto;
