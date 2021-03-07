@@ -3,6 +3,10 @@
     <header>
       <h1 class="heading-1">{{ celestial.name }}</h1>
     </header>
+    <div class="section-content">
+      <div v-if="error">Une erreur est survenue : {{ error }}</div>
+      <div v-if="celestial">{{ celestial }}</div>
+    </div>
   </section>
 </template>
 
@@ -18,7 +22,7 @@ export default defineComponent({
   name: "Celestial",
   data() {
     return {
-      celestial: {},
+      celestial: Object,
       error: ""
     };
   },
@@ -28,6 +32,7 @@ export default defineComponent({
       required: true
     }
   },
+
   mounted() {
     // Fetches from API...
     this.fetchCelestial()
@@ -35,23 +40,20 @@ export default defineComponent({
         // ...and add type
         this.celestial = addCelestialType(res);
       })
-      .catch(err => {
-        this.error = err.message;
+      .catch(() => {
+        this.error = "Impossible de récupérer l'astre demandé.";
       });
   },
+
   methods: {
     /**
-     * Fetches celestial bodies from API
+     * Fetches celestial body from API
      */
     fetchCelestial(): Promise<any> {
       return axios
         .get(`https://api.le-systeme-solaire.net/rest/bodies/${this.slug}`)
         .then(res => {
           return res.data;
-        })
-        .catch(err => {
-          this.error = err.message;
-          return [];
         });
     }
   }

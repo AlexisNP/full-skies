@@ -4,7 +4,13 @@
       <h1 class="heading-1">Le système solaire</h1>
     </header>
     <div class="section-content">
-      <celestials-list :celestials="celestials" />
+      <div v-if="error">Une erreur est survenue : {{ error }}</div>
+      <div v-if="celestials.length > 1">
+        <celestials-list :celestials="celestials" />
+      </div>
+      <div v-else>
+        <nest-loader />
+      </div>
     </div>
   </section>
 </template>
@@ -18,17 +24,31 @@ import axios from "axios";
 import { addCelestialType } from "@/plugins/methods";
 
 import CelestialsList from "@/components/celestials/CelestialsList.vue";
+import NestLoader from "@/components/NestLoader.vue";
 
 export default defineComponent({
   name: "Celestials",
   components: {
-    CelestialsList
+    CelestialsList,
+    NestLoader
   },
   data() {
     return {
-      celestials: Array<any>()
+      celestials: Array<any>(),
+      error: ""
     };
   },
+
+  mounted() {
+    this.fetchCelestials()
+      .then(res => {
+        this.celestials = this.addType(res);
+      })
+      .catch(() => {
+        this.error = "Impossible de récupérer les astres.";
+      });
+  },
+
   methods: {
     /**
      * Fetches celestial bodies from API
@@ -38,10 +58,6 @@ export default defineComponent({
         .get("https://api.le-systeme-solaire.net/rest/bodies/")
         .then(res => {
           return res.data.bodies;
-        })
-        .catch(err => {
-          console.log(err);
-          return [];
         });
     },
     /**
@@ -50,15 +66,6 @@ export default defineComponent({
     addType(bodies: Array<any>): Array<any> {
       return bodies.map((e: any) => addCelestialType(e));
     }
-  },
-  mounted() {
-    this.fetchCelestials()
-      .then(res => {
-        this.celestials = this.addType(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
   }
 });
 </script>
