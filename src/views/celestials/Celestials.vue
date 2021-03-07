@@ -1,5 +1,5 @@
 <template>
-  <section class="celestials">
+  <section class="celestials bg-image">
     <header>
       <h1 class="heading-1">Le système solaire</h1>
     </header>
@@ -77,19 +77,7 @@ export default defineComponent({
   padding: 25px 5%;
 
   &:after {
-    display: block;
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
     background-image: url("/celestials_bg-min.jpg");
-    background-size: cover;
-    background-attachment: fixed;
-    z-index: -1;
-    opacity: 33%;
-    pointer-events: none;
   }
 }
 </style>

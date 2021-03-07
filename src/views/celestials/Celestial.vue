@@ -1,5 +1,5 @@
 <template>
-  <section class="celestial">
+  <section class="celestial bg-image">
     <header>
       <h1 class="heading-1">{{ celestial.name }}</h1>
     </header>
@@ -59,3 +59,15 @@ export default defineComponent({
   }
 });
 </script>
+
+<style lang="scss" scoped>
+.celestial {
+  position: relative;
+  min-height: 100%;
+  padding: 25px 5%;
+
+  &:after {
+    background-image: url("/celestials_bg-min.jpg");
+  }
+}
+</style>
