@@ -1,11 +1,16 @@
 <template>
   <section class="celestial bg-image">
-    <header>
-      <h1 class="heading-1">{{ celestial.name }}</h1>
-    </header>
-    <div class="section-content">
-      <div v-if="error">Une erreur est survenue : {{ error }}</div>
-      <div v-if="celestial">{{ celestial }}</div>
+    <div v-if="loaded">
+      <header>
+        <h1 class="heading-1">{{ celestial.name }}</h1>
+      </header>
+      <div class="section-content">
+        <div v-if="error">Une erreur est survenue : {{ error }}</div>
+        <div>{{ celestial }}</div>
+      </div>
+    </div>
+    <div v-else>
+      <nest-loader />
     </div>
   </section>
 </template>
@@ -17,15 +22,22 @@ import { defineComponent } from "vue";
 import axios from "axios";
 // Global methods
 import { addCelestialType } from "@/plugins/methods";
+import NestLoader from "@/components/NestLoader.vue";
 
 export default defineComponent({
+  components: {
+    NestLoader
+  },
   name: "Celestial",
+
   data() {
     return {
-      celestial: Object,
+      celestial: false,
+      loaded: false,
       error: ""
     };
   },
+
   props: {
     slug: {
       type: String,
@@ -37,8 +49,11 @@ export default defineComponent({
     // Fetches from API...
     this.fetchCelestial()
       .then(res => {
-        // ...and add type
-        this.celestial = addCelestialType(res);
+        // Adds type after fake loading (it's just to showcase the spinner tbh)
+        setTimeout(() => {
+          this.celestial = addCelestialType(res);
+          this.loaded = true;
+        }, 1000);
       })
       .catch(() => {
         this.error = "Impossible de récupérer l'astre demandé.";
