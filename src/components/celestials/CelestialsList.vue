@@ -16,11 +16,6 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-// API
-import axios from "axios";
-// Global methods
-import { addCelestialType } from "@/plugins/methods";
-
 import CelestialCard from "@/components/celestials/CelestialCard.vue";
 import CelestialFilters from "./CelestialFilters.vue";
 
@@ -30,64 +25,39 @@ export default defineComponent({
     CelestialCard,
     CelestialFilters
   },
+  props: {
+    celestials: {
+      type: Array,
+      required: true
+    }
+  },
 
   // Initial state
   data() {
     return {
-      celestials: Array<any>(),
       activeFilter: "all"
     };
   },
 
   computed: {
-    sortedCelestials(): any {
+    sortedCelestials(): Array<any> {
       if (this.activeFilter == "moons") {
-        return this.celestials.filter(e => e.type === "lune");
+        return this.celestials.filter((e: any) => e.type === "lune");
       } else if (this.activeFilter == "planets") {
         return this.celestials.filter(
-          e => e.type === "planète" || e.type === "planète à lunes"
+          (e: any) => e.type === "planète" || e.type === "planète à lunes"
         );
       } else if (this.activeFilter == "stars") {
-        return this.celestials.filter(e => e.type === "étoile");
+        return this.celestials.filter((e: any) => e.type === "étoile");
       } else if (this.activeFilter == "others") {
-        return this.celestials.filter(e => e.type === "autre");
+        return this.celestials.filter((e: any) => e.type === "autre");
       } else {
         return this.celestials;
       }
     }
   },
 
-  mounted() {
-    // Fetches from API...
-    this.fetchCelestials().then(res => {
-      // ...and add type
-      this.celestials = this.addType(res);
-    });
-  },
-
   methods: {
-    /**
-     * Fetches celestial bodies from API
-     */
-    fetchCelestials(): Promise<any> {
-      return axios
-        .get("https://api.le-systeme-solaire.net/rest/bodies/")
-        .then(res => {
-          return res.data.bodies;
-        })
-        .catch(err => {
-          console.log(err);
-          return [];
-        });
-    },
-
-    /**
-     * Assign a type from the celestial object provided
-     */
-    addType(bodies: Array<any>): Array<any> {
-      return bodies.map((e: any) => addCelestialType(e));
-    },
-
     /**
      * Applies the filter type to the data
      */
