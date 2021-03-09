@@ -16,12 +16,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 
 // API
 import axios from "axios";
 // Global methods
-import { addCelestialType } from "@/plugins/methods";
+import { addCelestialsType } from "@/plugins/methods";
 
 import CelestialsList from "@/components/celestials/CelestialsList.vue";
 import NestLoader from "@/components/NestLoader.vue";
@@ -34,38 +34,32 @@ export default defineComponent({
   },
   data() {
     return {
-      celestials: Array<any>(),
       error: ""
     };
   },
 
-  mounted() {
-    this.fetchCelestials()
-      .then(res => {
-        this.celestials = this.addType(res);
-      })
-      .catch(() => {
-        this.error = "Impossible de récupérer les astres.";
-      });
-  },
+  setup() {
+    const celestials = ref(Array<any>());
 
-  methods: {
     /**
      * Fetches celestial bodies from API
      */
-    fetchCelestials(): Promise<any> {
+    const fetchCelestials = (): Promise<any> => {
       return axios
         .get("https://api.le-systeme-solaire.net/rest/bodies/")
         .then(res => {
           return res.data.bodies;
         });
-    },
-    /**
-     * Assign a type from the celestial object provided
-     */
-    addType(bodies: Array<any>): Array<any> {
-      return bodies.map((e: any) => addCelestialType(e));
-    }
+    };
+
+    const getCelestials = async () => {
+      celestials.value = await fetchCelestials();
+      celestials.value = addCelestialsType(celestials.value);
+    };
+
+    onMounted(getCelestials);
+
+    return { celestials };
   }
 });
 </script>
