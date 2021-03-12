@@ -19,7 +19,8 @@
 import { defineComponent, onMounted, ref } from "vue";
 
 // API
-import axios from "axios";
+import { fetchCelestials } from "@/api/le-systeme-solaire";
+
 // Global methods
 import { addCelestialsType } from "@/plugins/methods";
 
@@ -40,17 +41,6 @@ export default defineComponent({
 
   setup() {
     const celestials = ref(Array<any>());
-
-    /**
-     * Fetches celestial bodies from API
-     */
-    const fetchCelestials = (): Promise<any> => {
-      return axios
-        .get("https://api.le-systeme-solaire.net/rest/bodies/")
-        .then(res => {
-          return res.data.bodies;
-        });
-    };
 
     const getCelestials = async () => {
       celestials.value = await fetchCelestials();
