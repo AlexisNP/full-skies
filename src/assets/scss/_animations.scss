@@ -36,6 +36,15 @@
   }
 }
 
+@keyframes slideFromRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
 @keyframes paneBgAround {
   0% {
     background-position: -10vw 0%;

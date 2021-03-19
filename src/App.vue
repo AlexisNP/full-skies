@@ -4,16 +4,19 @@
     <div class="fs-content">
       <router-view />
     </div>
+    <toasts-list />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import Navbar from "@/components/Navbar.vue";
+import ToastsList from "@/components/toast/ToastsList.vue";
 
 export default defineComponent({
   components: {
-    Navbar
+    Navbar,
+    ToastsList,
   }
 });
 </script>
