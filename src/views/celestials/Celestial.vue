@@ -1,6 +1,6 @@
 <template>
   <section class="celestial bg-image">
-    <div v-if="loaded">
+    <div v-if="celestialLoaded">
       <header>
         <h1 class="heading-1">{{ celestial.name }}</h1>
       </header>
@@ -8,6 +8,7 @@
         <div v-if="error">Une erreur est survenue : {{ error }}</div>
         <div>{{ celestial }}</div>
       </div>
+      <button @click="toggleFav(celestial.id)">Favourite</button>
     </div>
     <div v-else>
       <nest-loader />
@@ -18,8 +19,11 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
+import store from "@/store";
+
 // API
 import { fetchCelestial } from "@/api/le-systeme-solaire";
+// import { fetchWikipediaExcerpt } from "@/api/wikipedia";
 
 // Global methods
 import { addCelestialType } from "@/plugins/methods";
@@ -33,8 +37,9 @@ export default defineComponent({
 
   data() {
     return {
-      celestial: false,
-      loaded: false,
+      celestial: {},
+      celestialLoaded: false,
+      excerpt: "",
       error: ""
     };
   },
@@ -50,15 +55,23 @@ export default defineComponent({
     // Fetches from API...
     fetchCelestial(this.slug)
       .then(res => {
-        // Adds type after fake loading (it's just to showcase the spinner tbh)
-        setTimeout(() => {
-          this.celestial = addCelestialType(res);
-          this.loaded = true;
-        }, 1000);
+        this.celestial = addCelestialType(res);
+        this.celestialLoaded = true;
+        return this.celestial;
       })
       .catch(() => {
         this.error = "Impossible de récupérer l'astre demandé.";
+      })
+      .then(() => {
+        // fetchWikipediaExcerpt(celestial);
       });
+  },
+
+  methods: {
+    toggleFav: (celestialId: string) => {
+      store.dispatch("toggleFav", celestialId);
+      console.log(store.state.user.favourites);
+    },
   }
 });
 </script>
