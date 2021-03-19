@@ -3,6 +3,7 @@ import { createStore } from "vuex";
 export default createStore({
   state: () => ({
     user: {
+      avatarUrl: "",
       favourites: Array<{ id: string }>()
     }
   }),
@@ -12,7 +13,7 @@ export default createStore({
       return state.user.favourites.length;
     },
     // Returns true if celestial is fav
-    isAlreadyFav: state => (celestialId: string) => {
+    isFav: state => (celestialId: string) => {
       return state.user.favourites.find(fav => fav.id === celestialId);
     }
   },
@@ -21,13 +22,15 @@ export default createStore({
       state.user.favourites.push({ id: celestialId });
     },
     removeFav: (state, celestialId: string) => {
-      state.user.favourites = state.user.favourites.filter(fav => fav.id != celestialId);
+      state.user.favourites = state.user.favourites.filter(
+        fav => fav.id != celestialId
+      );
     }
   },
   actions: {
     toggleFav: ({ commit, getters }, celestialId: string) => {
       // If the celestial is not faved
-      if (!getters.isAlreadyFav(celestialId)) {
+      if (!getters.isFav(celestialId)) {
         // ... favs it
         commit("addFav", celestialId);
       } else {

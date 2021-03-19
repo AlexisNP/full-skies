@@ -8,7 +8,6 @@
         <div v-if="error">Une erreur est survenue : {{ error }}</div>
         <div>{{ celestial }}</div>
       </div>
-      <button @click="toggleFav(celestial.id)">Favourite</button>
     </div>
     <div v-else>
       <nest-loader />
@@ -18,8 +17,6 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-
-import store from "@/store";
 
 // API
 import { fetchCelestial } from "@/api/le-systeme-solaire";
@@ -65,13 +62,6 @@ export default defineComponent({
       .then(() => {
         // fetchWikipediaExcerpt(celestial);
       });
-  },
-
-  methods: {
-    toggleFav: (celestialId: string) => {
-      store.dispatch("toggleFav", celestialId);
-      console.log(store.state.user.favourites);
-    },
   }
 });
 </script>
