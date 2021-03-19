@@ -1,3 +1,14 @@
+@keyframes toggleFavHeart {
+  0%, 20% {
+    color: #d01d35;
+    transform: scale(1.2);
+  }
+  100% {
+    color: #d01d35;
+    transform: scale(1);
+  }
+}
+
 @keyframes fadeInBg {
   from {
     opacity: 0;

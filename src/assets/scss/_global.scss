@@ -66,6 +66,18 @@ a {
   }
 }
 
+button {
+  &.no-style {
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
 hr {
   border-color: rgba($white, .2);
 }
@@ -140,13 +152,14 @@ hr {
     width: 100%;
     background-size: cover;
     background-attachment: fixed;
+    background-repeat: no-repeat;
     z-index: -1;
     opacity: 33%;
     pointer-events: none;
   }
   &.bg-fade-in {
     &:after {
-      width: 120vw;
+      background-size: 120vw;
       opacity: 0;
       animation: fadeInBg 2s ease-out 0s 1 forwards,
       paneBgAround 35s ease-in-out 0s infinite forwards;
