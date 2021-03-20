@@ -85,7 +85,7 @@
 
       <div class="card-actions">
         <button
-          @click="toggleFav(celestial.id)"
+          @click="toggleFav(celestial)"
           class="favourite no-style"
           :class="isFav ? 'active' : ''"
         >
@@ -120,9 +120,25 @@ export default defineComponent({
     celestial: Object
   },
   methods: {
-    toggleFav: (celestialId: string) => {
-      store.dispatch("toggleFav", celestialId);
-      console.log(store.state.user.favourites);
+    toggleFav: (celestial: any) => {
+      store.dispatch("toggleFav", celestial.id);
+      if (store.getters.isFav(celestial.id)) {
+        store.dispatch("toasts/pushToast", {
+          id: 200,
+          title: "Favori ajouté",
+          message: `${celestial.name} a été ajouté à la liste des favoris.`,
+          category: "valid",
+          timer: 3
+        });
+      } else {
+        store.dispatch("toasts/pushToast", {
+          id: 200,
+          title: "Favori retiré",
+          message: `${celestial.name} a été retiré de la liste des favoris.`,
+          category: "valid",
+          timer: 3
+        });
+      }
     }
   }
 });

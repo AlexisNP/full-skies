@@ -1,34 +1,10 @@
 <template>
   <div class="toast-wrapper">
-    <div class="toast-item">
-      <toast-card variant="info">
-        <template #title>Toast informant</template>
+    <div class="toast-item" v-for="toast in queue" :key="toast.id">
+      <toast-card :variant="toast.category" :toast="toast">
+        <template #title>{{ toast.title }}</template>
         <template #message>
-          Ce message est utilisé pour informer.
-        </template>
-      </toast-card>
-    </div>
-    <div class="toast-item">
-      <toast-card variant="valid">
-        <template #title>Toast validant</template>
-        <template #message>
-          Ce message est utilisé pour valider.
-        </template>
-      </toast-card>
-    </div>
-    <div class="toast-item">
-      <toast-card variant="warning">
-        <template #title>Toast avertissant</template>
-        <template #message>
-          Ce message est utilisé pour avertir.
-        </template>
-      </toast-card>
-    </div>
-    <div class="toast-item">
-      <toast-card variant="danger">
-        <template #title>Toast d'alerte</template>
-        <template #message>
-          Ce message est utilisé pour alerter.
+          {{ toast.message }}
         </template>
       </toast-card>
     </div>
@@ -37,12 +13,23 @@
 
 <script>
 import { defineComponent } from "vue";
+
 import ToastCard from "./ToastCard.vue";
 
 export default defineComponent({
   name: "ToastsList",
   components: {
     ToastCard
+  },
+  computed: {
+    queue() {
+      return this.$store.state.toasts.queue;
+    }
+  },
+  watch: {
+    queue(next, old) {
+      console.log(old, next);
+    }
   }
 });
 </script>

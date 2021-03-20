@@ -16,7 +16,7 @@ import ToastsList from "@/components/toast/ToastsList.vue";
 export default defineComponent({
   components: {
     Navbar,
-    ToastsList,
+    ToastsList
   }
 });
 </script>

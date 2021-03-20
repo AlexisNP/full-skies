@@ -1,5 +1,5 @@
 <template>
-  <div class="toast-card" :class="variant">
+  <div class="toast-card" :class="toast.category">
     <div class="toast-title">
       <slot name="title" />
     </div>
@@ -15,7 +15,25 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "ToastCard",
   props: {
-    variant: String
+    toast: Object
+  },
+  methods: {
+    // Counts down until 0 is reached
+    countdown(timeToLive) {
+      if (timeToLive > 0) {
+        console.log(timeToLive);
+        setTimeout(() => {
+          timeToLive = timeToLive - 1;
+          this.countdown(timeToLive);
+        }, 800);
+      } else {
+        // When timer ends
+      }
+    }
+  },
+  mounted() {
+    // Starts countdown to initial timer value
+    this.countdown(this.toast.timer);
   }
 });
 </script>
@@ -23,11 +41,12 @@ export default defineComponent({
 <style lang="scss" scoped>
 .toast-card {
   position: relative;
+  width: 300px;
   padding: 20px 30px 26px;
   border-radius: 5px;
   animation: fadeIn 1s cubic-bezier(0.175, 1, 0.32, 1),
     slideFromRight 1s cubic-bezier(0.175, 1, 0.32, 1);
-    overflow: hidden;
+  overflow: hidden;
   .toast-title {
     margin-bottom: 5px;
     font-size: 16px;
