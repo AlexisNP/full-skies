@@ -1,5 +1,5 @@
 <template>
-  <div class="toast-card" :class="toast.category">
+  <div class="toast-card" :class="[toast.category, closing ? 'closing' : '']">
     <div class="toast-title">
       <slot name="title" />
     </div>
@@ -12,8 +12,15 @@
 <script>
 import { defineComponent } from "vue";
 
+import store from "@/store";
+
 export default defineComponent({
   name: "ToastCard",
+  data() {
+    return {
+      closing: false
+    };
+  },
   props: {
     toast: Object
   },
@@ -25,10 +32,17 @@ export default defineComponent({
         setTimeout(() => {
           timeToLive = timeToLive - 1;
           this.countdown(timeToLive);
-        }, 800);
+        }, 900);
       } else {
         // When timer ends
+        this.closing = true;
+        setTimeout(() => {
+          this.close();
+        }, 1200);
       }
+    },
+    close() {
+      store.dispatch("toasts/purgeToast", this.toast.id);
     }
   },
   mounted() {
@@ -75,6 +89,10 @@ export default defineComponent({
   }
   &.danger {
     background-color: $danger;
+  }
+  &.closing {
+    animation: fadeOut 1.2s cubic-bezier(0.175, 1, 0.32, 1),
+      slideFromLeft 1.2s cubic-bezier(0.175, 1, 0.32, 1);
   }
 }
 </style>

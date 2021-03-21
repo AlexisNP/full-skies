@@ -98,6 +98,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { v4 as uuidv4 } from "uuid";
 
 import store from "@/store";
 
@@ -124,7 +125,7 @@ export default defineComponent({
       store.dispatch("toggleFav", celestial.id);
       if (store.getters.isFav(celestial.id)) {
         store.dispatch("toasts/pushToast", {
-          id: 200,
+          id: uuidv4(),
           title: "Favori ajouté",
           message: `${celestial.name} a été ajouté à la liste des favoris.`,
           category: "valid",
@@ -132,7 +133,7 @@ export default defineComponent({
         });
       } else {
         store.dispatch("toasts/pushToast", {
-          id: 200,
+          id: uuidv4(),
           title: "Favori retiré",
           message: `${celestial.name} a été retiré de la liste des favoris.`,
           category: "valid",

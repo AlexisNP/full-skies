@@ -27,6 +27,15 @@
   }
 }
 
+@keyframes fadeOut {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 @keyframes fromBottom {
   from {
     transform: translateY(20px);
@@ -42,6 +51,15 @@
   }
   to {
     transform: translateX(0);
+  }
+}
+
+@keyframes slideFromLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
   }
 }
 

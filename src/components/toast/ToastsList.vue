@@ -25,11 +25,6 @@ export default defineComponent({
     queue() {
       return this.$store.state.toasts.queue;
     }
-  },
-  watch: {
-    queue(next, old) {
-      console.log(old, next);
-    }
   }
 });
 </script>
