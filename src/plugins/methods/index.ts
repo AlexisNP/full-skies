@@ -21,6 +21,11 @@ export const addCelestialType = (celestial: any) => {
   return celestial;
 };
 
+export const addCelestialsType = (celestials: any) => {
+  return celestials.map((e: any) => addCelestialType(e));
+};
+
 export default {
-  addCelestialType
+  addCelestialType,
+  addCelestialsType
 };

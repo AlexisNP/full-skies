@@ -19,12 +19,12 @@ const routes: Array<RouteRecordRaw> = [
     component: About
   },
   {
-    path: "/celestes",
+    path: "/astres",
     name: "CelesteAll",
     component: Celestials
   },
   {
-    path: "/celestes/:slug",
+    path: "/astres/:slug",
     name: "CelesteSingle",
     component: Celestial,
     props: true

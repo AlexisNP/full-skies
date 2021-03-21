@@ -71,7 +71,7 @@ export default defineComponent({
   data() {
     return {
       filters: {
-        all: false,
+        all: true,
         planets: false,
         moons: false,
         stars: false,

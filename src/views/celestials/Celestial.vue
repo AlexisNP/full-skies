@@ -1,6 +1,6 @@
 <template>
   <section class="celestial bg-image">
-    <div v-if="loaded">
+    <div v-if="celestialLoaded">
       <header>
         <h1 class="heading-1">{{ celestial.name }}</h1>
       </header>
@@ -19,7 +19,9 @@
 import { defineComponent } from "vue";
 
 // API
-import axios from "axios";
+import { fetchCelestial } from "@/api/le-systeme-solaire";
+// import { fetchWikipediaExcerpt } from "@/api/wikipedia";
+
 // Global methods
 import { addCelestialType } from "@/plugins/methods";
 import NestLoader from "@/components/NestLoader.vue";
@@ -32,8 +34,9 @@ export default defineComponent({
 
   data() {
     return {
-      celestial: false,
-      loaded: false,
+      celestial: {},
+      celestialLoaded: false,
+      excerpt: "",
       error: ""
     };
   },
@@ -47,30 +50,18 @@ export default defineComponent({
 
   mounted() {
     // Fetches from API...
-    this.fetchCelestial()
+    fetchCelestial(this.slug)
       .then(res => {
-        // Adds type after fake loading (it's just to showcase the spinner tbh)
-        setTimeout(() => {
-          this.celestial = addCelestialType(res);
-          this.loaded = true;
-        }, 1000);
+        this.celestial = addCelestialType(res);
+        this.celestialLoaded = true;
+        return this.celestial;
       })
       .catch(() => {
         this.error = "Impossible de récupérer l'astre demandé.";
+      })
+      .then(() => {
+        // fetchWikipediaExcerpt(celestial);
       });
-  },
-
-  methods: {
-    /**
-     * Fetches celestial body from API
-     */
-    fetchCelestial(): Promise<any> {
-      return axios
-        .get(`https://api.le-systeme-solaire.net/rest/bodies/${this.slug}`)
-        .then(res => {
-          return res.data;
-        });
-    }
   }
 });
 </script>

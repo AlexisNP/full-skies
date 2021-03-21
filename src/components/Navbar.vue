@@ -23,8 +23,8 @@ export default defineComponent({
           link: "/"
         },
         {
-          text: "Célestes",
-          link: "/celestes"
+          text: "Astres",
+          link: "/astres"
         },
         {
           text: "À propos",

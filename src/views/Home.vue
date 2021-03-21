@@ -3,11 +3,11 @@
     <div class="splash fade-in-children">
       <h2 class="heading-1">Full Skies</h2>
       <p class="heading-2">
-        L'application Full Skies explore les cieux à votre place !
+        Explorez les cieux et le système solaire avec Full Skies !
       </p>
       <p class="heading-2">
         Embarquez pour un voyage stellaire ; destination : le système solaire et
-        ses astres.
+        ses astres si proches.
       </p>
     </div>
   </section>

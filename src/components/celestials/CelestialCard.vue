@@ -42,6 +42,15 @@
         </p>
       </div>
 
+      <div class="card-info">
+        <router-link
+          :to="{ name: 'CelesteSingle', params: { slug: celestial.id } }"
+          class="no-style"
+        >
+          <span class="material-icons-round">info</span>
+        </router-link>
+      </div>
+
       <div class="card-content">
         <div v-if="celestial.aroundPlanet">
           <p>
@@ -75,12 +84,13 @@
       </div>
 
       <div class="card-actions">
-        <router-link
-          :to="{ name: 'CelesteSingle', params: { slug: celestial.id } }"
-          class="btn btn-primary"
+        <button
+          @click="toggleFav(celestial)"
+          class="favourite no-style"
+          :class="isFav ? 'active' : ''"
         >
-          Détails
-        </router-link>
+          <span class="icon material-icons-round">favorite</span>
+        </button>
       </div>
     </div>
   </div>
@@ -88,6 +98,9 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { v4 as uuidv4 } from "uuid";
+
+import store from "@/store";
 
 export default defineComponent({
   name: "celestial-card",
@@ -96,8 +109,38 @@ export default defineComponent({
       type: "unknown"
     };
   },
+  computed: {
+    isFav() {
+      if (store.getters.isFav(this.celestial?.id)) {
+        return true;
+      }
+      return false;
+    }
+  },
   props: {
     celestial: Object
+  },
+  methods: {
+    toggleFav: (celestial: any) => {
+      store.dispatch("toggleFav", celestial.id);
+      if (store.getters.isFav(celestial.id)) {
+        store.dispatch("toasts/pushToast", {
+          id: uuidv4(),
+          title: "Favori ajouté",
+          message: `${celestial.name} a été ajouté à la liste des favoris.`,
+          category: "valid",
+          timer: 3
+        });
+      } else {
+        store.dispatch("toasts/pushToast", {
+          id: uuidv4(),
+          title: "Favori retiré",
+          message: `${celestial.name} a été retiré de la liste des favoris.`,
+          category: "valid",
+          timer: 3
+        });
+      }
+    }
   }
 });
 </script>
@@ -121,8 +164,18 @@ export default defineComponent({
     .card-icon {
       display: block;
       position: absolute;
-      top: 0;
+      top: 20px;
+      bottom: 20px;
+      left: 0;
       right: 0;
+      user-select: none;
+      pointer-events: none;
+      opacity: 4%;
+      img {
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+      }
     }
 
     > * {
@@ -134,6 +187,30 @@ export default defineComponent({
     .card-content {
       flex: 1 1 auto;
       min-height: 30px;
+    }
+
+    .card-info {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+    .card-actions {
+      color: #afafaf;
+      .favourite {
+        .icon {
+          color: #afafaf;
+        }
+        &.active {
+          .icon {
+            position: relative;
+            display: inline-block;
+            will-change: font-size;
+            animation: toggleFavHeart 0.6s cubic-bezier(0.17, 0.89, 0.32, 1.49);
+            animation-fill-mode: forwards;
+          }
+        }
+      }
     }
   }
 }

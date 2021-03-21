@@ -1,3 +1,14 @@
+@keyframes toggleFavHeart {
+  0%, 20% {
+    color: #d01d35;
+    transform: scale(1.2);
+  }
+  100% {
+    color: #d01d35;
+    transform: scale(1);
+  }
+}
+
 @keyframes fadeInBg {
   from {
     opacity: 0;
@@ -16,12 +27,39 @@
   }
 }
 
+@keyframes fadeOut {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 @keyframes fromBottom {
   from {
     transform: translateY(20px);
   }
   to {
     transform: translateY(0);
+  }
+}
+
+@keyframes slideFromRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFromLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
   }
 }
 
