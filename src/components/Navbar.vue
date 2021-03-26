@@ -25,14 +25,6 @@ export default defineComponent({
         {
           text: "Astres",
           link: "/astres"
-        },
-        {
-          text: "À propos",
-          link: "/a-propos"
-        },
-        {
-          text: "Profil",
-          link: "/profil"
         }
       ]
     };

@@ -106,7 +106,6 @@ export default defineComponent({
         this.filters.others = true;
       }
 
-      // Emit filter type
       this.$emit("filter:celestials", type);
     }
   }

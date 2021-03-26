@@ -4,6 +4,7 @@
       <h2>My Profile</h2>
       <hr />
       <h2>Profile for {{ user.name }}</h2>
+      <p>Inscrit le {{ registerDateFr }}</p>
     </header>
 
     <div v-if="user.avatar">
@@ -79,6 +80,7 @@ export default defineComponent({
         avatar: null,
         age: 21,
         repos: [],
+        registerDate: "2020-10-30",
         friends: [
           {
             uuid: "91261477-04fb-4052-8ef9-6041ad7afb7e",
@@ -101,6 +103,18 @@ export default defineComponent({
     };
   },
 
+  computed: {
+    registerDateFr(): any {
+      const data = new Date(this.user.registerDate);
+      const date = {
+        day: data.getDate(),
+        month: data.getUTCMonth() + 1,
+        year: data.getFullYear()
+      };
+      return `${date.day}/${date.month}/${date.year}`;
+    }
+  },
+
   methods: {
     addFriend() {
       if (this.inputFriend.name) {
@@ -118,7 +132,7 @@ export default defineComponent({
     }
   },
 
-  mounted() {
+  created() {
     axios
       .get("https://api.github.com/users/alexisnp")
       .then(res => {
