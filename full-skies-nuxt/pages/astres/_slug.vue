@@ -34,13 +34,6 @@ export default {
     NestLoader
   },
 
-  props: {
-    slug: {
-      type: String,
-      required: true
-    }
-  },
-
   data () {
     return {
       celestial: {},
@@ -52,7 +45,7 @@ export default {
 
   mounted () {
     // Fetches from API...
-    fetchCelestial(this.slug)
+    fetchCelestial(this.$route.params.slug)
       .then((res) => {
         this.celestial = addCelestialType(res)
         this.celestialLoaded = true
