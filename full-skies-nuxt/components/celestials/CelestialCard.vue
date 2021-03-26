@@ -45,27 +45,24 @@
       </div>
 
       <div class="card-info">
-        <router-link
-          :to="{ name: 'CelesteSingle', params: { slug: celestial.id } }"
+        <nuxt-link
+          :to="`/astres/${celestial.id}`"
           class="no-style"
         >
           <span class="material-icons-round">info</span>
-        </router-link>
+        </nuxt-link>
       </div>
 
       <div class="card-content">
         <div v-if="celestial.aroundPlanet">
           <p>
             Orbite autour de
-            <router-link
-              :to="{
-                name: 'CelesteSingle',
-                params: { slug: celestial.aroundPlanet.planet }
-              }"
+            <nuxt-link
+              :to="`/astres/${celestial.aroundPlanet.planet}`"
               class="txt-capitalize"
             >
               {{ celestial.aroundPlanet.planet }}
-            </router-link>
+            </nuxt-link>
           </p>
         </div>
         <div v-if="celestial.gravity">
