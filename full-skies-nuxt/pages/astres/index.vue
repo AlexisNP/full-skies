@@ -20,8 +20,6 @@
 </template>
 
 <script>
-import { onMounted, ref } from '@vue/composition-api'
-
 // API
 import { fetchCelestials } from '@/api/le-systeme-solaire'
 
@@ -37,23 +35,21 @@ export default {
     CelestialsList,
     NestLoader
   },
-
-  setup () {
-    const celestials = ref([])
-
-    const getCelestials = async () => {
-      celestials.value = await fetchCelestials()
-      celestials.value = addCelestialsType(celestials.value)
-    }
-
-    onMounted(getCelestials)
-
-    return { celestials }
-  },
   data () {
     return {
+      celestials: [],
       error: ''
     }
+  },
+
+  mounted () {
+    fetchCelestials()
+      .then((res) => {
+        this.celestials = addCelestialsType(res)
+      })
+      .catch(() => {
+        this.error = 'Impossible de récupérer les astres.'
+      })
   }
 }
 </script>
