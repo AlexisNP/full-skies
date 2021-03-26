@@ -2,9 +2,9 @@
   <div class="navbar">
     <ul class="navbar-menu no-style">
       <li v-for="item in items" :key="item.url" class="navbar-item">
-        <router-link :to="item.link" class="navbar-link no-style">
+        <nuxt-link :to="item.link" class="navbar-link no-style">
           {{ item.text }}
-        </router-link>
+        </nuxt-link>
       </li>
     </ul>
   </div>
@@ -84,7 +84,7 @@ export default defineComponent({
           transition: width 0.25s ease-in-out;
         }
 
-        &.router-link-active {
+        &.nuxt-link-exact-active {
           &:after {
             width: 100%;
           }

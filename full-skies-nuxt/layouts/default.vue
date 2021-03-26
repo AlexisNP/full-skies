@@ -1,5 +1,6 @@
 <template>
   <div class="fs-wrapper">
+    <navbar />
     <div class="fs-content">
       <Nuxt />
     </div>
