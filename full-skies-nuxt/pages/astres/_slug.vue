@@ -3,14 +3,31 @@
     <div v-if="celestialLoaded">
       <header>
         <h1 class="heading-1">
-          {{ celestial.name }}
+          <span>{{ celestial.name }}</span>
+          <span v-if="celestial.name != celestial.englishName">/ {{ celestial.englishName }}</span>
+          <span class="txt-capitalize">- {{ celestial.type }}</span>
         </h1>
       </header>
       <div class="section-content">
-        <div v-if="error">
-          Une erreur est survenue : {{ error }}
-        </div>
-        <div>{{ celestial }}</div>
+        <main class="celestial-body">
+          <div>
+            <h3 class="heading-3">
+              Informations
+            </h3>
+            <p v-if="celestial.discoveredBy">
+              Découvert par {{ celestial.discoveredBy }} le {{ celestial.discoveryDate }}
+            </p>
+            <p>Facteur Gravité : {{ celestial.gravity }}</p>
+            <p>Facteur Densité : {{ celestial.density }}</p>
+            <p>Inclinaison : {{ celestial.inclination }}</p>
+          </div>
+          <div v-if="celestial.moons" class="celestial-moons">
+            <h2 class="heading-2">
+              Lunes orbitant {{ celestial.name }}
+            </h2>
+            <celestials-list :celestials="celestial.moons" :has-filters="false" />
+          </div>
+        </main>
       </div>
     </div>
     <div v-else>
@@ -25,7 +42,6 @@ import { fetchCelestial } from '@/api/le-systeme-solaire'
 // import { fetchWikipediaExcerpt } from "@/api/wikipedia";
 
 // Global methods
-import { addCelestialType } from '@/plugins/methods'
 import NestLoader from '@/components/NestLoader.vue'
 
 export default {
@@ -47,15 +63,12 @@ export default {
     // Fetches from API...
     fetchCelestial(this.$route.params.slug)
       .then((res) => {
-        this.celestial = addCelestialType(res)
+        this.celestial = res
         this.celestialLoaded = true
         return this.celestial
       })
       .catch(() => {
         this.error = "Impossible de récupérer l'astre demandé."
-      })
-      .then(() => {
-        // fetchWikipediaExcerpt(celestial);
       })
   }
 }
@@ -69,6 +82,12 @@ export default {
 
   &:after {
     background-image: url("/celestials_bg-min.jpg");
+  }
+
+  .celestial-body {
+    .celestial-type {
+      text-transform: capitalize;
+    }
   }
 }
 </style>
