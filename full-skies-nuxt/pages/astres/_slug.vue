@@ -14,6 +14,15 @@
             <h3 class="heading-3">
               Informations
             </h3>
+            <p v-if="celestial.aroundPlanet">
+              Orbite autour de
+              <nuxt-link
+                :to="`/astres/${celestial.aroundPlanet.planet}`"
+                class="txt-capitalize"
+              >
+                {{ celestial.aroundPlanet.planet }}
+              </nuxt-link>
+            </p>
             <p v-if="celestial.discoveredBy">
               Découvert par {{ celestial.discoveredBy }} le {{ celestial.discoveryDate }}
             </p>
@@ -23,7 +32,7 @@
           </div>
           <div v-if="celestial.moons" class="celestial-moons">
             <h2 class="heading-2">
-              Lunes orbitant {{ celestial.name }}
+              Astres orbitant {{ celestial.name }}
             </h2>
             <celestials-list :celestials="celestial.moons" :has-filters="false" />
           </div>
@@ -85,8 +94,12 @@ export default {
   }
 
   .celestial-body {
-    .celestial-type {
-      text-transform: capitalize;
+    a {
+      color: $primary-xxlight;
+      text-decoration: underline;
+      &:hover {
+        color: $primary-xlight;
+      }
     }
   }
 }
