@@ -1,6 +1,6 @@
 <template>
   <div class="celestial-list-wrapper">
-    <celestial-filters @filter:celestials="filterCelestials" />
+    <celestial-filters v-if="hasFilters" @filter:celestials="filterCelestials" />
     <ul v-if="celestials" class="celestial-list grid no-style">
       <li
         v-for="(celestial, index) in sortedCelestials"
@@ -29,6 +29,10 @@ export default defineComponent({
     celestials: {
       type: Array,
       required: true
+    },
+    hasFilters: {
+      type: Boolean,
+      default: true
     }
   },
 
