@@ -4,8 +4,17 @@
     <div class="fs-content">
       <Nuxt />
     </div>
+    <toasts-list />
   </div>
 </template>
+
+<script>
+import ToastsList from '@/components/toast/ToastsList.vue'
+
+export default {
+  components: { ToastsList }
+}
+</script>
 
 <style lang="scss" scoped>
 .fs-wrapper {
