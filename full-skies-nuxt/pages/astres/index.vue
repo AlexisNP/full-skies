@@ -24,7 +24,6 @@
 import { fetchCelestials } from '@/api/le-systeme-solaire'
 
 // Global methods
-import { addCelestialsType } from '@/plugins/methods'
 
 import CelestialsList from '@/components/celestials/CelestialsList.vue'
 import NestLoader from '@/components/NestLoader.vue'
@@ -45,7 +44,7 @@ export default {
   mounted () {
     fetchCelestials()
       .then((res) => {
-        this.celestials = addCelestialsType(res)
+        this.celestials = res
       })
       .catch(() => {
         this.error = 'Impossible de récupérer les astres.'
