@@ -16,19 +16,19 @@
         >
         <img
           v-else-if="celestial.type === 'lune'"
-          src="icons/moon-and-stars-in-a-cloud.svg"
+          src="/icons/moon-and-stars-in-a-cloud.svg"
           class="fs-icon"
           alt="moon icon"
         >
         <img
           v-else-if="celestial.type === 'étoile'"
-          src="icons/sun-shape.svg"
+          src="/icons/sun-shape.svg"
           class="fs-icon"
           alt="moon icon"
         >
         <img
           v-else
-          src="icons/stars-group.svg"
+          src="/icons/stars-group.svg"
           alt="moon icon"
           class="fs-icon"
         >
@@ -96,12 +96,9 @@
 </template>
 
 <script>
-import { defineComponent } from '@vue/composition-api'
 import { v4 as uuidv4 } from 'uuid'
 
-import store from '@/store'
-
-export default defineComponent({
+export default {
   name: 'CelestialCard',
   props: {
     celestial: {
@@ -116,17 +113,14 @@ export default defineComponent({
   },
   computed: {
     isFav () {
-      if (store.getters.isFav(this.celestial?.id)) {
-        return true
-      }
-      return false
+      return this.$store.getters.isFav(this.celestial.id)
     }
   },
   methods: {
     toggleFav: (celestial) => {
-      store.dispatch('toggleFav', celestial.id)
-      if (store.getters.isFav(celestial.id)) {
-        store.dispatch('toasts/pushToast', {
+      this.$store.dispatch('toggleFav', celestial.id)
+      if (!this.isFav) {
+        this.$store.dispatch('toasts/pushToast', {
           id: uuidv4(),
           title: 'Favori ajouté',
           message: `${celestial.name} a été ajouté à la liste des favoris.`,
@@ -134,7 +128,7 @@ export default defineComponent({
           timer: 3
         })
       } else {
-        store.dispatch('toasts/pushToast', {
+        this.$store.dispatch('toasts/pushToast', {
           id: uuidv4(),
           title: 'Favori retiré',
           message: `${celestial.name} a été retiré de la liste des favoris.`,
@@ -144,7 +138,7 @@ export default defineComponent({
       }
     }
   }
-})
+}
 </script>
 
 <style lang="scss" scoped>
