@@ -15,7 +15,6 @@
 // API
 import { fetchCelestials } from '@/api/le-systeme-solaire'
 
-// Global methods
 import CelestialsList from '@/components/celestials/CelestialsList.vue'
 
 export default {
@@ -23,6 +22,7 @@ export default {
   components: {
     CelestialsList
   },
+
   data () {
     return {
       celestials: []

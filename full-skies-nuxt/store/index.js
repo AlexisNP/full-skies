@@ -31,10 +31,8 @@ export const actions = {
   toggleFav: ({ commit, getters }, celestialId) => {
     // If the celestial is not faved
     if (!getters.isFav(celestialId)) {
-      // ... favs it
       commit('addFav', celestialId)
     } else {
-      // ...else unfavs
       commit('removeFav', celestialId)
     }
   }
