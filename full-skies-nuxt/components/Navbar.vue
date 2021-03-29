@@ -25,6 +25,10 @@ export default defineComponent({
         {
           text: 'Astres',
           link: '/astres'
+        },
+        {
+          text: 'Favoris',
+          link: '/favoris'
         }
       ]
     }
