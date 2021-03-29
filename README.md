@@ -1,16 +1,27 @@
-# Full Skies
-This small-scale application is used to consume the API. Its functionnalities for now are only about exploiting the API endpoints to display data.
+# full-skies
+Ce projet a pour but d'exploiter [l'API Le Système Solaire](https://api.le-systeme-solaire.net/) et de proposer une interface simple pour selectionner des favoris.
 
-In the future, users could be able to register and create their own list of astral bodies.
+- [Dependencies](#dependencies)
+- [How to install](#how-to-install)
 ## Dependencies
-- [Vue](https://vuejs.org/) - Front-end framework
-- [Vuex](https://vuex.vuejs.org/) - Store
-<!-- - [MongoDB](https://www.mongodb.com/) - Database -->
+* Vue.js
+* Nuxt
+* Axios
+* Jest
 
-## Usage
-**TBI**
-## Contributors
-- [AlexisNP](https://github.com/AlexisNP)
+## How to install
+To install and run the project, you need to clone this project and run these commands in the root folder.
 
-## Credits
-**TBI**
+```bash
+# Install the npm packages
+$ npm install
+
+# FOR DEVELOPPERS
+# Runs an instance of the app on localhost:3000 that hot reloads
+$ npm run dev
+
+# FOR PRODUCTION
+# Compiles and builds for production and starts app
+$ npm run build
+$ npm run start
+```
