@@ -1,38 +1,7 @@
 <template>
   <div class="celestial-card">
     <div class="card-wrapper">
-      <div class="card-icon">
-        <img
-          v-if="celestial.type === 'planète à lunes'"
-          src="/icons/saturn-and-other-planets.svg"
-          class="fs-icon"
-          alt="planet icon"
-        >
-        <img
-          v-else-if="celestial.type === 'planète'"
-          src="/icons/saturn-planet-shape.svg"
-          class="fs-icon"
-          alt="planet icon"
-        >
-        <img
-          v-else-if="celestial.type === 'lune'"
-          src="/icons/moon-and-stars-in-a-cloud.svg"
-          class="fs-icon"
-          alt="moon icon"
-        >
-        <img
-          v-else-if="celestial.type === 'étoile'"
-          src="/icons/sun-shape.svg"
-          class="fs-icon"
-          alt="moon icon"
-        >
-        <img
-          v-else
-          src="/icons/stars-group.svg"
-          alt="moon icon"
-          class="fs-icon"
-        >
-      </div>
+      <celestial-card-icon :type="celestial.type" />
 
       <div class="card-header">
         <h3 class="heading-3">
@@ -86,7 +55,7 @@
         <button
           class="favourite no-style"
           :class="isFav ? 'active' : ''"
-          @click="toggleFav(celestial)"
+          @click="toggleFav()"
         >
           <span class="icon material-icons-round">favorite</span>
         </button>
@@ -97,33 +66,31 @@
 
 <script>
 import { v4 as uuidv4 } from 'uuid'
+import CelestialCardIcon from './CelestialCardIcon.vue'
 
 export default {
   name: 'CelestialCard',
+  components: { CelestialCardIcon },
   props: {
     celestial: {
       type: Object,
       default: () => { return {} }
     }
   },
-  data () {
-    return {
-      type: 'unknown'
-    }
-  },
+
   computed: {
     isFav () {
       return this.$store.getters.isFav(this.celestial.id)
     }
   },
+
   methods: {
-    toggleFav: (celestial) => {
-      this.$store.dispatch('toggleFav', celestial.id)
+    toggleFav () {
       if (!this.isFav) {
         this.$store.dispatch('toasts/pushToast', {
           id: uuidv4(),
           title: 'Favori ajouté',
-          message: `${celestial.name} a été ajouté à la liste des favoris.`,
+          message: `${this.celestial.name} a été ajouté à la liste des favoris.`,
           category: 'valid',
           timer: 3
         })
@@ -131,11 +98,12 @@ export default {
         this.$store.dispatch('toasts/pushToast', {
           id: uuidv4(),
           title: 'Favori retiré',
-          message: `${celestial.name} a été retiré de la liste des favoris.`,
+          message: `${this.celestial.name} a été retiré de la liste des favoris.`,
           category: 'valid',
           timer: 3
         })
       }
+      this.$store.dispatch('toggleFav', this.celestial.id)
     }
   }
 }
@@ -156,23 +124,6 @@ export default {
     display: flex;
     flex-flow: column;
     align-items: stretch;
-
-    .card-icon {
-      display: block;
-      position: absolute;
-      top: 20px;
-      bottom: 20px;
-      left: 0;
-      right: 0;
-      user-select: none;
-      pointer-events: none;
-      opacity: 4%;
-      img {
-        height: 100%;
-        width: 100%;
-        z-index: -1;
-      }
-    }
 
     > * {
       flex: 0 1 auto;
