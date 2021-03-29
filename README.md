@@ -1,16 +1,20 @@
-# Full Skies
-This small-scale application is used to consume the API. Its functionnalities for now are only about exploiting the API endpoints to display data.
+# full-skies-nuxt
 
-In the future, users could be able to register and create their own list of astral bodies.
-## Dependencies
-- [Vue](https://vuejs.org/) - Front-end framework
-- [Vuex](https://vuex.vuejs.org/) - Store
-<!-- - [MongoDB](https://www.mongodb.com/) - Database -->
+## Build Setup
 
-## Usage
-**TBI**
-## Contributors
-- [AlexisNP](https://github.com/AlexisNP)
+```bash
+# install dependencies
+$ npm install
 
-## Credits
-**TBI**
+# serve with hot reload at localhost:3000
+$ npm run dev
+
+# build for production and launch server
+$ npm run build
+$ npm run start
+
+# generate static project
+$ npm run generate
+```
+
+For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
