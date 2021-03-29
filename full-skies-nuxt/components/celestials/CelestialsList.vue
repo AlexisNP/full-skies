@@ -1,15 +1,22 @@
 <template>
   <div class="celestial-list-wrapper">
-    <celestial-filters v-if="hasFilters" @filter:celestials="filterCelestials" />
-    <ul v-if="celestials" class="celestial-list grid no-style">
-      <li
-        v-for="(celestial, index) in sortedCelestials"
-        :key="index"
-        class="celestial-item"
-      >
-        <celestial-card :celestial="celestial" />
-      </li>
-    </ul>
+    <div v-if="celestials && celestials.length > 1">
+      <celestial-filters v-if="hasFilters" @filter:celestials="filterCelestials" />
+
+      <ul v-if="celestials" class="celestial-list grid no-style">
+        <li
+          v-for="(celestial, index) in sortedCelestials"
+          :key="index"
+          class="celestial-item"
+        >
+          <celestial-card :celestial="celestial" />
+        </li>
+      </ul>
+    </div>
+
+    <div v-else>
+      <nest-loader />
+    </div>
   </div>
 </template>
 
@@ -17,13 +24,15 @@
 import { defineComponent } from '@vue/composition-api'
 
 import CelestialCard from '@/components/celestials/CelestialCard.vue'
+import NestLoader from '@/components/NestLoader.vue'
 import CelestialFilters from './CelestialFilters.vue'
 
 export default defineComponent({
   name: 'CelestialList',
   components: {
     CelestialCard,
-    CelestialFilters
+    CelestialFilters,
+    NestLoader
   },
   props: {
     celestials: {

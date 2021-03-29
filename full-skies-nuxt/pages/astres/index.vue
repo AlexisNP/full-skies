@@ -6,15 +6,7 @@
       </h1>
     </header>
     <div class="section-content">
-      <div v-if="error">
-        Une erreur est survenue : {{ error }}
-      </div>
-      <div v-if="celestials.length > 1">
-        <celestials-list :celestials="celestials" />
-      </div>
-      <div v-else>
-        <nest-loader />
-      </div>
+      <celestials-list :celestials="celestials" />
     </div>
   </section>
 </template>
@@ -24,20 +16,16 @@
 import { fetchCelestials } from '@/api/le-systeme-solaire'
 
 // Global methods
-
 import CelestialsList from '@/components/celestials/CelestialsList.vue'
-import NestLoader from '@/components/NestLoader.vue'
 
 export default {
   name: 'Celestials',
   components: {
-    CelestialsList,
-    NestLoader
+    CelestialsList
   },
   data () {
     return {
-      celestials: [],
-      error: ''
+      celestials: []
     }
   },
 
