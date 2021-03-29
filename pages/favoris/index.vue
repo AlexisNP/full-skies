@@ -1,13 +1,15 @@
 <template>
   <section class="favourites bg-image">
-    <header>
-      <h1 class="heading-1">
-        Mes favoris
-      </h1>
-    </header>
-    <div class="section-content">
-      <celestials-list :celestials="favourites" />
-    </div>
+    <main>
+      <header>
+        <h1 class="heading-1">
+          Mes favoris
+        </h1>
+      </header>
+      <div class="section-content">
+        <celestials-list :celestials="favourites" />
+      </div>
+    </main>
   </section>
 </template>
 
@@ -22,7 +24,7 @@ export default {
   },
 
   created () {
-    // const favourites = this.$store.state.user.favourites
+    console.log(this.$store.state.user.favourites)
   }
 }
 </script>

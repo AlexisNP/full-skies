@@ -1,13 +1,15 @@
 <template>
   <section class="celestials bg-image">
-    <header>
-      <h1 class="heading-1">
-        Le système solaire
-      </h1>
-    </header>
-    <div class="section-content">
-      <celestials-list :celestials="celestials" />
-    </div>
+    <main>
+      <header>
+        <h1 class="heading-1">
+          Le système solaire
+        </h1>
+      </header>
+      <div class="section-content">
+        <celestials-list :celestials="celestials" />
+      </div>
+    </main>
   </section>
 </template>
 
