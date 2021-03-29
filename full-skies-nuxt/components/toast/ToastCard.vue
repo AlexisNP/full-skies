@@ -12,8 +12,6 @@
 <script>
 import { defineComponent } from '@vue/composition-api'
 
-import store from '@/store'
-
 export default defineComponent({
   name: 'ToastCard',
   props: {
@@ -24,7 +22,8 @@ export default defineComponent({
   },
   data () {
     return {
-      closing: false
+      closing: false,
+      tickingRate: 900
     }
   },
   mounted () {
@@ -38,17 +37,17 @@ export default defineComponent({
         setTimeout(() => {
           timeToLive = timeToLive - 1
           this.countdown(timeToLive)
-        }, 900)
+        }, this.tickingRate)
       } else {
         // When timer ends
         this.closing = true
         setTimeout(() => {
           this.close()
-        }, 1200)
+        }, this.tickingRate)
       }
     },
     close () {
-      store.dispatch('toasts/purgeToast', this.toast.id)
+      this.$store.dispatch('toasts/purgeToast', this.toast.id)
     }
   }
 })
