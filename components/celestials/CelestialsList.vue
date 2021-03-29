@@ -1,9 +1,9 @@
 <template>
   <div class="celestial-list-wrapper">
-    <div v-if="celestials">
-      <celestial-filters v-if="hasFilters && celestials.length > 0" @filter:celestials="filterCelestials" />
+    <div v-if="celestials.length > 0">
+      <celestial-filters v-if="hasFilters" @filter:celestials="filterCelestials" />
 
-      <ul v-if="celestials" class="celestial-list grid no-style">
+      <ul class="celestial-list grid no-style">
         <li
           v-for="(celestial, index) in sortedCelestials"
           :key="index"

@@ -7,7 +7,14 @@
         </h1>
       </header>
       <div class="section-content">
-        <celestials-list :celestials="favourites" />
+        <div v-if="favourites && favourites.length >= 1">
+          <celestials-list :celestials="favourites" />
+        </div>
+        <div v-else>
+          <h3 class="heading-3">
+            Vous n'avez aucun favori pour le moment.
+          </h3>
+        </div>
       </div>
     </main>
   </section>
