@@ -14,14 +14,15 @@
 <script>
 export default {
   name: 'Favourites',
+
   data () {
     return {
-      favorites: []
+      favourites: []
     }
   },
+
   created () {
-    // const favourites = this.$store.user.favourites
-    // console.log(favourites)
+    // const favourites = this.$store.state.user.favourites
   }
 }
 </script>

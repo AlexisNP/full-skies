@@ -8,7 +8,7 @@
       </h1>
     </header>
     <div class="section-content">
-      <main class="celestial-body">
+      <main v-if="celestial" class="celestial-body">
         <div>
           <h3 class="heading-3">
             Informations
@@ -43,17 +43,13 @@
 <script>
 // API
 import { fetchCelestial } from '@/api/le-systeme-solaire'
-// import { fetchWikipediaExcerpt } from "@/api/wikipedia";
-
-// Global methods
 
 export default {
   name: 'Celestial',
 
   data () {
     return {
-      celestial: {},
-      celestialLoaded: false
+      celestial: {}
     }
   },
 
@@ -62,12 +58,11 @@ export default {
     fetchCelestial(this.$route.params.slug)
       .then((res) => {
         this.celestial = res
-        this.celestialLoaded = true
         return this.celestial
       })
-      .catch(() => {
-        this.error = "Impossible de récupérer l'astre demandé."
-      })
+      // .catch((err) => {
+      //   console.error(err)
+      // })
   }
 }
 </script>
