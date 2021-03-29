@@ -1,6 +1,6 @@
 <template>
   <div class="celestial-list-wrapper">
-    <div v-if="celestials && celestials.length > 1">
+    <div v-if="celestials != undefined">
       <celestial-filters v-if="hasFilters" @filter:celestials="filterCelestials" />
 
       <ul v-if="celestials" class="celestial-list grid no-style">
@@ -84,11 +84,12 @@ export default defineComponent({
 <style lang="scss" scoped>
 .celestial-list {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: stretch;
   flex-flow: row wrap;
   .celestial-item {
-    width: calc(33% - 15px);
+    width: calc(33% - 20px);
+    margin-right: 20px;
     margin-bottom: 20px;
   }
 }

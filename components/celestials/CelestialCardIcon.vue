@@ -2,31 +2,31 @@
   <div class="card-icon">
     <img
       v-if="type === 'planète à lunes'"
-      src="/icons/saturn-and-other-planets.svg"
+      src="/icons/planet-moons.svg"
       class="fs-icon"
       alt="planet icon"
     >
     <img
       v-else-if="type === 'planète'"
-      src="/icons/saturn-planet-shape.svg"
+      src="/icons/planet.svg"
       class="fs-icon"
       alt="planet icon"
     >
     <img
       v-else-if="type === 'lune'"
-      src="/icons/moon-and-stars-in-a-cloud.svg"
+      src="/icons/moon.svg"
       class="fs-icon"
       alt="moon icon"
     >
     <img
       v-else-if="type === 'étoile'"
-      src="/icons/sun-shape.svg"
+      src="/icons/sun.svg"
       class="fs-icon"
       alt="moon icon"
     >
     <img
       v-else
-      src="/icons/stars-group.svg"
+      src="/icons/stars.svg"
       alt="moon icon"
       class="fs-icon"
     >

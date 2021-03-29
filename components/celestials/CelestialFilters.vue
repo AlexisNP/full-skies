@@ -2,57 +2,44 @@
   <div class="celestial-filters">
     <ul class="no-style">
       <li>
-        <button
-          class="btn btn-primary"
+        <AtomsFSButton
           :class="[filters.all ? 'active' : '']"
-          @click="emitFilter('all')"
+          @click.native="emitFilter('all')"
         >
           Tous
-        </button>
-        <button
-          class="btn btn-primary btn-icon"
+        </AtomsFSButton>
+        <AtomsFSButton
           :class="[filters.planets ? 'active' : '']"
-          @click="emitFilter('planets')"
+          icon="planet"
+          inverted
+          @click.native="emitFilter('planets')"
         >
           Planètes
-          <img
-            src="icons/saturn-planet-shape-white.svg"
-            alt=""
-            class="fs-icon icon-sm"
-          >
-        </button>
-        <button
-          class="btn btn-primary btn-icon"
+        </AtomsFSButton>
+        <AtomsFSButton
           :class="[filters.moons ? 'active' : '']"
-          @click="emitFilter('moons')"
+          icon="moon"
+          inverted
+          @click.native="emitFilter('moons')"
         >
           Lunes
-          <img
-            src="icons/moon-and-stars-in-a-cloud-white.svg"
-            alt=""
-            class="fs-icon icon-sm"
-          >
-        </button>
-        <button
-          class="btn btn-primary btn-icon"
+        </AtomsFSButton>
+        <AtomsFSButton
           :class="[filters.stars ? 'active' : '']"
-          @click="emitFilter('stars')"
+          icon="sun"
+          inverted
+          @click.native="emitFilter('stars')"
         >
           Etoiles
-          <img src="icons/sun-shape-white.svg" alt="" class="fs-icon icon-sm">
-        </button>
-        <button
-          class="btn btn-primary btn-icon"
+        </AtomsFSButton>
+        <AtomsFSButton
           :class="[filters.others ? 'active' : '']"
-          @click="emitFilter('others')"
+          icon="stars"
+          inverted
+          @click.native="emitFilter('others')"
         >
           Autres
-          <img
-            src="icons/stars-group-white.svg"
-            alt=""
-            class="fs-icon icon-sm"
-          >
-        </button>
+        </AtomsFSButton>
       </li>
     </ul>
   </div>
