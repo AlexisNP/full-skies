@@ -8,6 +8,11 @@
         <template #message>
           {{ toast.message }}
         </template>
+        <template #link>
+          <nuxt-link :to="toast.link.url">
+            {{ toast.link.text }}
+          </nuxt-link>
+        </template>
       </toast-card>
     </div>
   </div>

@@ -91,6 +91,10 @@ export default {
           id: uuidv4(),
           title: 'Favori ajouté',
           message: `${this.celestial.name} a été ajouté à la liste des favoris.`,
+          link: {
+            text: 'Consultez vos favoris.',
+            url: '/favoris'
+          },
           category: 'valid',
           timer: 3
         })
@@ -99,6 +103,10 @@ export default {
           id: uuidv4(),
           title: 'Favori retiré',
           message: `${this.celestial.name} a été retiré de la liste des favoris.`,
+          link: {
+            text: 'Consultez vos favoris.',
+            url: '/favoris'
+          },
           category: 'valid',
           timer: 3
         })

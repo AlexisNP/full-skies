@@ -8,6 +8,7 @@
           <span class="txt-capitalize">- {{ celestial.type }}</span>
         </h1>
       </header>
+
       <div class="section-content">
         <div class="celestial-body">
           <div>
@@ -18,11 +19,12 @@
               Orbite autour de
               <nuxt-link
                 :to="`/astres/${celestial.aroundPlanet.planet}`"
-                class="txt-capitalize"
+                class="txt-capitalize fs-link"
               >
                 {{ celestial.aroundPlanet.planet }}
               </nuxt-link>
             </p>
+
             <p v-if="celestial.discoveredBy">
               Découvert par {{ celestial.discoveredBy }} le {{ celestial.discoveryDate }}
             </p>
@@ -30,10 +32,12 @@
             <p>Facteur Densité : {{ celestial.density }}</p>
             <p>Inclinaison : {{ celestial.inclination }}</p>
           </div>
+
           <div v-if="celestial.moons" class="celestial-moons">
             <h2 class="heading-2">
               Astres orbitant {{ celestial.name }}
             </h2>
+
             <celestials-list :celestials="celestial.moons" :has-filters="false" />
           </div>
         </div>
@@ -77,16 +81,6 @@ export default {
 
   &:after {
     background-image: url("/celestials_bg-min.jpg");
-  }
-
-  .celestial-body {
-    a {
-      color: $primary-xxlight;
-      text-decoration: underline;
-      &:hover {
-        color: $primary-xlight;
-      }
-    }
   }
 }
 </style>

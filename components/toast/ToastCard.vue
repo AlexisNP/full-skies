@@ -6,6 +6,9 @@
     <div class="toast-message">
       <slot name="message" />
     </div>
+    <div class="toast-link">
+      <slot name="link" />
+    </div>
   </div>
 </template>
 
@@ -62,11 +65,23 @@ export default defineComponent({
   animation: fadeIn 1s cubic-bezier(0.175, 1, 0.32, 1),
     slideFromRight 1s cubic-bezier(0.175, 1, 0.32, 1);
   overflow: hidden;
+
   .toast-title {
     margin-bottom: 5px;
     font-size: 16px;
     font-weight: $fw-bold;
   }
+
+  .toast-link {
+    a {
+      color: $primary-xxlight;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
   &:after {
     position: absolute;
     display: block;
@@ -78,6 +93,7 @@ export default defineComponent({
     height: 6px;
     background: rgba($fs-black, 33%);
   }
+
   &.info {
     background-color: $info;
   }
@@ -91,6 +107,7 @@ export default defineComponent({
   &.danger {
     background-color: $danger;
   }
+
   &.closing {
     animation: fadeOut 1.2s cubic-bezier(0.175, 1, 0.32, 1),
       slideFromLeft 1.2s cubic-bezier(0.175, 1, 0.32, 1);
