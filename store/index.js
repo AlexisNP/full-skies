@@ -17,23 +17,23 @@ export const getters = {
 }
 
 export const mutations = {
-  addFav: (state, celestialId) => {
-    state.user.favourites.push({ id: celestialId })
+  addFav: (state, celestial) => {
+    state.user.favourites.push(celestial)
   },
-  removeFav: (state, celestialId) => {
+  removeFav: (state, celestial) => {
     state.user.favourites = state.user.favourites.filter(
-      fav => fav.id !== celestialId
+      fav => fav.id !== celestial.id
     )
   }
 }
 
 export const actions = {
-  toggleFav: ({ commit, getters }, celestialId) => {
+  toggleFav: ({ commit, getters }, celestial) => {
     // If the celestial is not faved
-    if (!getters.isFav(celestialId)) {
-      commit('addFav', celestialId)
+    if (!getters.isFav(celestial.id)) {
+      commit('addFav', celestial)
     } else {
-      commit('removeFav', celestialId)
+      commit('removeFav', celestial)
     }
   }
 }

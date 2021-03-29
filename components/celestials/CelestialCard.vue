@@ -103,7 +103,7 @@ export default {
           timer: 3
         })
       }
-      this.$store.dispatch('toggleFav', this.celestial.id)
+      this.$store.dispatch('toggleFav', this.celestial)
     }
   }
 }

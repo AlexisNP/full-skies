@@ -17,14 +17,10 @@
 export default {
   name: 'Favourites',
 
-  data () {
-    return {
-      favourites: []
+  computed: {
+    favourites () {
+      return this.$store.state.user.favourites
     }
-  },
-
-  created () {
-    console.log(this.$store.state.user.favourites)
   }
 }
 </script>
