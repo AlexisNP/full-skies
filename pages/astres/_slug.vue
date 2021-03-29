@@ -53,22 +53,14 @@ import { fetchCelestial } from '@/api/le-systeme-solaire'
 export default {
   name: 'Celestial',
 
-  data () {
-    return {
-      celestial: false
+  async asyncData ({ params, error }) {
+    const slug = params.slug
+    try {
+      const celestial = await fetchCelestial(slug)
+      return { celestial }
+    } catch (err) {
+      error(err)
     }
-  },
-
-  mounted () {
-    // Fetches from API...
-    fetchCelestial(this.$route.params.slug)
-      .then((res) => {
-        this.celestial = res
-        return this.celestial
-      })
-      // .catch((err) => {
-      //   console.error(err)
-      // })
   }
 }
 </script>
