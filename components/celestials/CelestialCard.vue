@@ -163,6 +163,9 @@ export default {
             will-change: font-size;
             animation: toggleFavHeart 0.6s cubic-bezier(0.17, 0.89, 0.32, 1.49);
             animation-fill-mode: forwards;
+            &:hover {
+              color: darken(#d01d35, 6%) !important
+            }
           }
         }
       }
