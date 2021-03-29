@@ -61,17 +61,6 @@ export default {
     } catch (err) {
       error(err)
     }
-  },
-
-  mounted () {
-    fetchCelestial(this.$route.params.slug)
-      .then((res) => {
-        this.celestial = res
-        return this.celestial
-      })
-      .catch(() => {
-        console.log('test')
-      })
   }
 }
 </script>

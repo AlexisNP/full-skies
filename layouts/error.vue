@@ -21,8 +21,8 @@ export default {
   layout: 'error',
   props: {
     error: {
-      type: String,
-      default: ''
+      type: Object,
+      default: () => { return {} }
     }
   }
 }
